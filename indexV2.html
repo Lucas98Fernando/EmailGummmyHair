@@ -9,8 +9,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="/assets/notifications/styles.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
     <style>
+        body {
+            background-color: #FCF9FD;
+        }
+
         .button_user {
             background-color: #73c8fb;
             text-align: center;
@@ -50,7 +53,6 @@
         }
 
         .section {
-            background-color: #DEDEDE;
             border-radius: 10px;
         }
 
@@ -72,163 +74,225 @@
         }
 
         .icons span {
-            font-size: 14px;
+            font-size: 12px;
         }
     </style>
 </head>
 
 <body>
-    <div class="body">
-        <img class="img-full" src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/img1.png?v=1605287043">
-        <img class="img-full" src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/img2.png?v=1605287044">
-        <img class="img-full" src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/img3.png?v=1605287044">
+    <table class="body">
+        <tr>
+            <td>
+                <table class="header row">
+                    <tr>
+                        <td class="header__cell">
+                            <center>
 
-        <table class="row content">
-            <tr>
-                <td class="content__cell">
-                    <center>
-                        <table class="container">
-                            <tr>
+                                <table class="container">
+                                    <tr>
+                                        <td>
 
-                                <a href="{{ url }}" class="button_user"> EI, {{ billing_address.first_name }}</a>
-
-                            </tr>
-                        </table>
-                    </center>
-                </td>
-            </tr>
-        </table>
-        <div class="main-text">
-            <p>Notamos que você tem uma quedinha pelo Gummmy Hair, não adianta negar, e
-                trouxemos ótimas notícias: o
-                crush é muito recíproco!</p>
-            <p>O kit selecionado a sua espera do mesmo jeito que você deixou no carrinho.
-            </p>
-            <p>Quer conhecer melhor sobre o Gummmy Hair antes de se entregar a essa
-                paixão? Entre em contato com a gente
-                através dos nossos canais de atendimento e falaremos todas as
-                curiosidades sobre esse produto.</p>
-            <p>Somos super a favor dessa paquera.</p>
-            <h2>{{ email_title }}</h2>
-            {% if custom_message != blank %}
-            <p>{{ custom_message }}</p>
-            {% else %}
-            <p>{{ email_body }}</p>
-            {% endif %}
-        </div>
-        <table class="row content">
-            <tr>
-                <td class="content__cell">
-                    <center>
-                        <table class="container">
-                            <tr>
-
-                                <a href="{{ url }}" class="button_store">Voltar para o carrinho</a>
-
-                            </tr>
-                        </table>
-                    </center>
-                </td>
-            </tr>
-        </table>
-
-        <table class="row section">
-            <tr>
-                <td class="section__cell">
-                    <center>
-
-                        <table class="container">
-                            <tr>
-                                <td>
-                                    <table class="row">
-                                        {% for line in subtotal_line_items %}
-                                        <tr class="order-list__item">
-                                            <td class="order-list__item__cell">
-                                                <table>
-                                                    <td>
-                                                        {% if line.image %}
-                                                        <img src="{{ line | img_url: 'compact_cropped' }}" align="left"
-                                                            width="60" height="60" class="order-list__product-image" />
-                                                        {% endif %}
+                                            <table class="row">
+                                                <tr>
+                                                    <td class="shop-name__cell">
+                                                        <img class="img-full"
+                                                            src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/img1.png?v=1605287043">
+                                                        <img class="img-full"
+                                                            src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/img2.png?v=1605287044">
+                                                        <img class="img-full"
+                                                            src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/img3.png?v=1605287044">
+                                                        <center> <a href="{{ url }}" class="button_user"> EI,
+                                                                {{ billing_address.first_name }}</a></center>
                                                     </td>
-                                                    <td class="order-list__product-description-cell">
-                                                        {% if line.product.title %}
-                                                        {% assign line_title = line.product.title %}
-                                                        {% else %}
-                                                        {% assign line_title = line.title %}
-                                                        {% endif %}
 
-                                                        {% if line.quantity < line.quantity %}
-                                                        {% capture line_display %} {{ line.quantity }} of
-                                                        {{ line.quantity }} {% endcapture %}
-                                                        {% else %}
-                                                        {% assign line_display = line.quantity  %}
-                                                        {% endif %}
+                                                </tr>
+                                            </table>
 
-                                                        <span
-                                                            class="order-list__item-title">{{ line_title }} × {{ line_display }}</span><br />
+                                        </td>
+                                    </tr>
+                                </table>
 
-                                                        {% if line.variant.title != 'Default Title' %}
-                                                        <span
-                                                            class="order-list__item-variant">{{ line.variant.title }}</span><br />
-                                                        {% endif %}
+                            </center>
+                        </td>
+                    </tr>
+                </table>
 
-                                                        {% if line.selling_plan_allocation %}
-                                                        <span
-                                                            class="order-list__item-variant">{{ line.selling_plan_allocation.selling_plan.name }}</span><br />
-                                                        {% endif %}
+                <table class="row content">
+                    <tr>
+                        <td class="content__cell">
+                            <center>
+                                <table class="container">
+                                    <tr>
+                                        <td>
 
-                                                        {% if line.refunded_quantity > 0 %}
-                                                        <span class="order-list__item-refunded">Reembolsado</span>
-                                                        {% endif %}
-
-                                                        {% if line.discount_allocations %}
-                                                        {% for discount_allocation in line.discount_allocations %}
-                                                        {% if discount_allocation.discount_application.target_selection != 'all' %}
-                                                        <span class="order-list__item-discount-allocation">
-                                                            <img src="{{ 'notifications/discounttag.png' | shopify_asset_url }}"
-                                                                width="18" height="18" class="discount-tag-icon" />
-                                                            <span>
-                                                                {{ discount_allocation.discount_application.title | upcase }}
-                                                                (-{{ discount_allocation.amount | money }})
-                                                            </span>
-                                                        </span>
-                                                        {% endif %}
-                                                        {% endfor %}
-                                                        {% endif %}
+                                            <div class="main-text">
+                                                <p>Notamos que você tem uma quedinha pelo Gummmy Hair, não adianta
+                                                    negar, e
+                                                    trouxemos ótimas notícias: o
+                                                    crush é muito recíproco!</p>
+                                                <p>O kit selecionado a sua espera do mesmo jeito que você deixou no
+                                                    carrinho.
+                                                </p>
+                                                <p>Quer conhecer melhor sobre o Gummmy Hair antes de se entregar a essa
+                                                    paixão? Entre em contato com a gente
+                                                    através dos nossos canais de atendimento e falaremos todas as
+                                                    curiosidades sobre esse produto.</p>
+                                                <p>Somos super a favor dessa paquera.</p>
+                                                <h2>{{ email_title }}</h2>
+                                                {% if custom_message != blank %}
+                                                <p>{{ custom_message }}</p>
+                                                {% else %}
+                                                <p>{{ email_body }}</p>
+                                                {% endif %}
+                                            </div>
+                                            <table class="row">
+                                                <tr>
+                                                    <td> <center>
+                                                            <a href="{{ url }}" class="button_store">Volte para o
+                                                                carrinho</a>
+                                                        </center>
                                                     </td>
-                                                </table>
-                                            </td>
-                                        </tr>{% endfor %}
-                                    </table>
+                                                </tr>
 
+                                            </table>
 
-                                </td>
-                            </tr>
-                        </table>
-                    </center>
-                </td>
-            </tr>
-        </table>
-        <img class="img-full" src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/img5.png?v=1605287044">
-        <hr>
-        <span>Compartilhe</span>
-        <div class="youtube icons">
-            <a href="https://www.youtube.com/channel/UC7ZDrCaKi_n53t_fze7vchw" target="_blank"><img
-                    src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/youtube.png?v=1605712881">
-                <span>GUMMYHAIRVITAMIN</span></a>
-        </div>
-        <div class="facebook icons">
-            <a href="https://www.facebook.com/GummyHairOficial/?rc=p" target="_blank"><img
-                    src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/facebook.png?v=1605712881">
-                <span>GUMMYHAIR</span></a>
-        </div>
-        <div class="instagram icons">
-            <a href="https://www.instagram.com/gummy.hair/?hl=pt-br" target="_blank">
-                <img src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/instagram.png?v=1605715064">
-                <span>GUMMY.HAIR</span></a>
-        </div>
-    </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="row section">
+                    <tr>
+                        <td class="section__cell">
+                            <center>
+                                <table class="container">
+                                    <tr>
+                                        <td>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="container">
+                                    <tr>
+                                        <td>
+
+                                            <table class="row">
+                                                {% for line in subtotal_line_items %}
+                                                <tr class="order-list__item">
+                                                    <td class="order-list__item__cell">
+                                                        <table>
+                                                            <td>
+                                                                {% if line.image %}
+                                                                <img src="{{ line | img_url: 'compact_cropped' }}"
+                                                                    align="left" width="60" height="60"
+                                                                    class="order-list__product-image" />
+                                                                {% endif %}
+                                                            </td>
+                                                            <td class="order-list__product-description-cell">
+                                                                {% if line.product.title %}
+                                                                {% assign line_title = line.product.title %}
+                                                                {% else %}
+                                                                {% assign line_title = line.title %}
+                                                                {% endif %}
+
+                                                                {% if line.quantity < line.quantity %}
+                                                                {% capture line_display %} {{ line.quantity }} of
+                                                                {{ line.quantity }} {% endcapture %}
+                                                                {% else %}
+                                                                {% assign line_display = line.quantity  %}
+                                                                {% endif %}
+
+                                                                <span
+                                                                    class="order-list__item-title">{{ line_title }} × {{ line_display }}</span><br />
+
+                                                                {% if line.variant.title != 'Default Title' %}
+                                                                <span
+                                                                    class="order-list__item-variant">{{ line.variant.title }}</span><br />
+                                                                {% endif %}
+
+                                                                {% if line.selling_plan_allocation %}
+                                                                <span
+                                                                    class="order-list__item-variant">{{ line.selling_plan_allocation.selling_plan.name }}</span><br />
+                                                                {% endif %}
+
+                                                                {% if line.refunded_quantity > 0 %}
+                                                                <span
+                                                                    class="order-list__item-refunded">Reembolsado</span>
+                                                                {% endif %}
+
+                                                                {% if line.discount_allocations %}
+                                                                {% for discount_allocation in line.discount_allocations %}
+                                                                {% if discount_allocation.discount_application.target_selection != 'all' %}
+                                                                <span class="order-list__item-discount-allocation">
+                                                                    <img src="{{ 'notifications/discounttag.png' | shopify_asset_url }}"
+                                                                        width="18" height="18"
+                                                                        class="discount-tag-icon" />
+                                                                    <span>
+                                                                        {{ discount_allocation.discount_application.title | upcase }}
+                                                                        (-{{ discount_allocation.amount | money }})
+                                                                    </span>
+                                                                </span>
+                                                                {% endif %}
+                                                                {% endfor %}
+                                                                {% endif %}
+                                                            </td>
+                                                        </table>
+                                                    </td>
+                                                </tr>{% endfor %}
+                                            </table>
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+
+                <table class="row footer">
+                    <tr>
+                        <td class="footer__cell">
+                            <center>
+                                <table class="container">
+                                    <tr>
+                                        <td>
+                                            <img class="img-full"
+                                                src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/img5.png?v=1605287044">
+                                            <hr>
+                                            <span>Compartilhe</span>
+                                            <div class="youtube icons">
+                                                <a href="https://www.youtube.com/channel/UC7ZDrCaKi_n53t_fze7vchw"
+                                                    target="_blank"><img
+                                                        src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/youtube.png?v=1605712881">
+                                                    <span>GUMMYHAIRVITAMIN</span></a>
+                                            </div>
+                                            <div class="facebook icons">
+                                                <a href="https://www.facebook.com/GummyHairOficial/?rc=p"
+                                                    target="_blank"><img
+                                                        src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/facebook.png?v=1605712881">
+                                                    <span>GUMMYHAIR</span></a>
+                                            </div>
+                                            <div class="instagram icons">
+                                                <a href="https://www.instagram.com/gummy.hair/?hl=pt-br"
+                                                    target="_blank">
+                                                    <img
+                                                        src="https://cdn.shopify.com/s/files/1/0504/9011/4222/files/instagram.png?v=1605715064">
+                                                    <span>GUMMY.HAIR</span></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </center>
+                        </td>
+                    </tr>
+                </table>
+                <img src="{{ 'notifications/spacer.png' | shopify_asset_url }}" class="spacer" height="1" />
+            </td>
+        </tr>
+    </table>
 </body>
 
 </html>
